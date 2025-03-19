@@ -7,7 +7,7 @@ const os = require('os');
 const { Pool } = require('pg');
 
 const app = express();
-const port = 3000;
+const port = 3110;
 
 // Konfigurasi SSH
 const SSH_CONFIG_FH = {
