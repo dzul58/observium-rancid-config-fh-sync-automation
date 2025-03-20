@@ -86,8 +86,8 @@ async function getLatestConfigFilesForEachIP(ssh) {
     // Masuk sebagai root
     await ssh.execCommand('sudo -i', { stdin: '\n' });
     
-    // Mendapatkan daftar file di direktori /home/nmsfh dengan format timestamp lengkap
-    const result = await ssh.execCommand('ls -la --time-style=full-iso /home/nmsfh', { cwd: '/' });
+    // Mendapatkan daftar file di direktori /home/nmsfh/Policy_Task/Config_Export dengan format timestamp lengkap
+    const result = await ssh.execCommand('ls -la --time-style=full-iso /home/nmsfh/Policy_Task/Config_Export', { cwd: '/' });
     
     if (result.stderr) {
       console.error('Error listing files:', result.stderr);
@@ -216,7 +216,7 @@ async function transferConfigFiles() {
         
         // Download file dari server FH
         console.log(`Downloading ${fileName} from FiberHome server...`);
-        await sshFH.getFile(localFilePath, `/home/nmsfh/${fileName}`);
+        await sshFH.getFile(localFilePath, `/home/nmsfh/Policy_Task/Config_Export/${fileName}`);
         
         // Dapatkan hostname untuk IP ini dari database
         const hostname = await getHostnameForIP(ip);
